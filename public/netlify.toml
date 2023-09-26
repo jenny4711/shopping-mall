@@ -1,0 +1,4 @@
+[[redirects]]
+  from = "/api/*"
+  to = "http://shoppingmall.us-east-1.elasticbeanstalk.com/api/:splat"
+  status = 200

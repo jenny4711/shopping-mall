@@ -4,7 +4,7 @@ const LOCAL_BACKEND = process.env.REACT_APP_LOCAL_BACKEND;
 console.log("proxy", LOCAL_BACKEND);
 
 const api = axios.create({
-  baseURL: LOCAL_BACKEND,
+  baseURL: `${LOCAL_BACKEND}/api`,
   headers: {
     "Content-Type": "application/json",
     authorization: `Bearer ${sessionStorage.getItem("token")}`,
