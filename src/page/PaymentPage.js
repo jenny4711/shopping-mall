@@ -47,7 +47,7 @@ const PaymentPage = () => {
     zip: "",
   });
 
-  // ...
+
 
   useEffect(() => {
     if (firstLoading) {
