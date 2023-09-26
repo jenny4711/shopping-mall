@@ -2,3 +2,6 @@
   from = "/api/*"
   to = "http://shoppingmall.us-east-1.elasticbeanstalk.com/api:splat"
   status = 200
+
+  [build.environment]
+  NODE_VERSION = "v20.5.0"
