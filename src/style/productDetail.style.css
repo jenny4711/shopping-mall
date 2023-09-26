@@ -1,0 +1,24 @@
+
+.size-drop-down{
+    width:100%;
+}
+
+.warning-message{
+    color:red;
+}
+
+.product-info{
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.Req-section{
+    margin-top:20px;
+    
+}
+
+.Req-btn:hover{
+    background-color: white;
+    color:black;
+    border:2px solid black;
+}

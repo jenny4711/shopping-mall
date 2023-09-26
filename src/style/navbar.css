@@ -1,0 +1,15 @@
+.none{
+  display:none;
+}
+.open{
+  display:flex;
+  flex-direction: column;
+  border: 3px solid black;
+}
+.menu{
+  margin-bottom:5rem;
+  
+}
+.navb-li{
+  margin:10px;
+}
