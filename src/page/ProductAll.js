@@ -51,7 +51,7 @@ console.log(showList,'list!')
       <Row>
         {showList.map((item) => (
           <Col md={3} sm={12} key={item._id}>
-            <ProductCard setShowPrice={showPrice} item={item} />
+            <ProductCard showPrice={showPrice} item={item} />
           </Col>
         ))}
       </Row>

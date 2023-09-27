@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { currencyFormat } from "../utils/number";
 import '../style/ProductCard.style.css'
-const ProductCard = ({ item ,showPrice}) => {
+const ProductCard = ({showPrice, item }) => {
  console.log(showPrice,'show')
   const navigate = useNavigate();
 
