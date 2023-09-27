@@ -20,6 +20,7 @@ const RequestTable = ( {idx,item,header,deleteItem}) => {
         </tr>
       </thead>
       <tbody>
+        <tr>
         <th>{idx}</th>
         <th>{item.userId.email}</th>
         <th>{new Date(item.createdAt).toLocaleDateString()}</th>
@@ -29,6 +30,7 @@ const RequestTable = ( {idx,item,header,deleteItem}) => {
        <th>
         <Button variant='dark' className='reqTable-btn'  onClick={()=>deleteItem(item._id)}>delete</Button>
        </th>
+       </tr>
       </tbody>
     </Table>
   </div>
