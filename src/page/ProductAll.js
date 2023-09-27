@@ -15,7 +15,8 @@ const ProductAll = () => {
   const [showPrice,setShowPrice]=useState(false)
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-
+console.log(level,'level')
+console.log(showPrice,'all')
   let name = searchParams.get("name");
 
   useEffect(()=>{
