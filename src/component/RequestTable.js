@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { requestItemActions } from '../action/requestAction';
 import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
-
+import '../style/RequestTable.style.css'
 const RequestTable = ( {idx,item,header,deleteItem}) => {
 
 
@@ -27,7 +27,7 @@ const RequestTable = ( {idx,item,header,deleteItem}) => {
         <th>{item.size}</th>
         <th>{item.qty}</th>
        <th>
-        <Button className='reqTable-btn'  onClick={()=>deleteItem(item._id)}>delete</Button>
+        <Button variant='dark' className='reqTable-btn'  onClick={()=>deleteItem(item._id)}>delete</Button>
        </th>
       </tbody>
     </Table>
