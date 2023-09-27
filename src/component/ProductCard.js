@@ -7,14 +7,19 @@ const ProductCard = ({ item }) => {
   const navigate = useNavigate();
 
   const showProduct = (id) => {
-    navigate(`/product/${id}`);
+    if(!showPrice){
+      return navigate('/login')
+    }
+       return navigate(`/product/${id}`);
+    
+    
   };
   return (
     <>
       <div className="card" onClick={() => showProduct(item._id)}>
         <img src={item.image} alt="" />
         <div>{item.name}</div>
-        <div>$ {currencyFormat(item.price)}</div>
+        <div className={!showPrice?'none':''}>$ {currencyFormat(item.price)}</div>
        
       </div>
     </>

@@ -10,13 +10,19 @@ import { commonUiActions } from "../action/commonUiAction";
 const ProductAll = () => {
   const dispatch = useDispatch();
   const { productList } = useSelector((state) => state.product);
+  const {level}=useSelector((state)=>state.user.user || {})
   const [showList, setShowList] = useState([]);
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
 
   let name = searchParams.get("name");
 
-  console.log(name, "name!!!");
+  useEffect(()=>{
+    if(level && level === 'customer' || level && level === 'admin'){
+       setShowPrice(true)
+    }
+
+  },[level])
 
   useEffect(() => {
     dispatch(productActions.getProductList());
@@ -43,7 +49,7 @@ console.log(showList,'list!')
       <Row>
         {showList.map((item) => (
           <Col md={3} sm={12} key={item._id}>
-            <ProductCard item={item} />
+            <ProductCard setShowPrice={showPrice} item={item} />
           </Col>
         ))}
       </Row>
