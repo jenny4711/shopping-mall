@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { currencyFormat } from "../utils/number";
 import '../style/ProductCard.style.css'
 const ProductCard = ({ item ,showPrice}) => {
-  console.log(item.stock,'item!!!!')
+ console.log(showPrice,'show')
   const navigate = useNavigate();
 
   const showProduct = (id) => {
