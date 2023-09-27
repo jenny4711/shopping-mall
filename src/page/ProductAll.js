@@ -12,6 +12,7 @@ const ProductAll = () => {
   const { productList } = useSelector((state) => state.product);
   const {level}=useSelector((state)=>state.user.user || {})
   const [showList, setShowList] = useState([]);
+  const [showPrice,setShowPrice]=useState(false)
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
 
