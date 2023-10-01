@@ -3,3 +3,13 @@
   width:270px;
 
 }
+@media only screen and (max-width:768px){
+  .Images{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .Images-img{
+    width:300px;
+  }
+}

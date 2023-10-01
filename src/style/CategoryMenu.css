@@ -11,7 +11,26 @@ a{
   display:none;
 }
 
+.popver-links{
+  
+  list-style-type: none;
+  padding:40px;
 
+}
+a{
+  color:black;
+  text-decoration-line: none;
+
+}
+.none{
+  display:none;
+}
+
+
+.popver-links li{
+  padding:10px;
+  font-size:20px;
+}
 
 
 
