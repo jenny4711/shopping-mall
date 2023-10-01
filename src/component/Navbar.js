@@ -153,7 +153,7 @@ const Navbar = ({ user,}) => {
         </Link>
       </div>
 
-      <div className="nav-menu-area">
+      <div className={!isMobile?"nav-menu-area":"none"}>
       <div
       defaultActiveKey="profile"
       id="fill-tab-example"
