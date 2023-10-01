@@ -26,7 +26,7 @@ const getCartList = () => async (dispatch) => {
   try {
     dispatch(cartActionss.getCartListRequest());
     const response = await api.get("/cart");
-   
+   console.log(response,'getCartList!!!!!!!!!!')
 
     dispatch(cartActionss.getCartListSuccess(response.data.data.items));
     dispatch(cartActionss.getCartUser(response.data.data.userId))
@@ -80,11 +80,27 @@ const getCartQty = () => async (dispatch) => {
   } catch (error) {
     dispatch(cartActionss.getCartQtyFail(error.error));
   }
+
 };
+
+const getDiscount =(totalPrice,discount)=>(dispatch)=>{
+  try{
+    const total =totalPrice - (totalPrice * discount/100)
+    dispatch(cartActionss.getDiscountPriceSuccess(total))
+    console.log(total,'total')
+  }catch(error){
+    dispatch(cartActionss.getCartDisPriceFail(error.error))
+  }
+
+};
+
+
 export const cartActions = {
   addToCart,
   getCartList,
   deleteCartItem,
   updateQty,
   getCartQty,
+  getDiscount, 
+ 
 };

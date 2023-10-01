@@ -11,8 +11,9 @@ import { commonUiActions } from "../action/commonUiAction";
 const InitialFormData = {
   name: "",
   sku: "",
-  stock: {s:0,m:0,l:0},
-  image: "",
+  stock: { s: 0, m: 0, l: 0 },
+  image: [],
+
   description: "",
   category: [],
   status: "active",
@@ -28,67 +29,73 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
   const dispatch = useDispatch();
   const [stockError, setStockError] = useState(false);
   const handleClose = () => {
-    console.log('close')
-    setShowDialog(false)
+    console.log("close");
+    setShowDialog(false);
     //모든걸 초기화시키고;
     // 다이얼로그 닫아주기
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-  
-    if(stock.length === 0){
-      return setStockError(true)
+
+    if (stock.length === 0) {
+      return setStockError(true);
     }
-    const totalStock = stock.reduce((total,item)=>{
-      return {...total,[item[0]]:parseInt(item[1])}
-    },{})
-  
+    const totalStock = stock.reduce((total, item) => {
+      return { ...total, [item[0]]: parseInt(item[1]) };
+    }, {});
+
     //재고를 입력했는지 확인, 아니면 에러
     // 재고를 배열에서 객체로 바꿔주기
     // [['M',2]] 에서 {M:2}로
     if (mode === "new") {
-       dispatch(productActions.createProduct({...formData,stock:totalStock}))
-       setShowDialog(false)
+      dispatch(
+        productActions.createProduct({ ...formData, stock: totalStock })
+      );
+      setShowDialog(false);
       //새 상품 만들기
     } else {
-      dispatch(productActions.editProduct({...formData,stock:totalStock},selectedProduct._id))
+      dispatch(
+        productActions.editProduct(
+          { ...formData, stock: totalStock },
+          selectedProduct._id
+        )
+      );
       setShowDialog(false);
       // 상품 수정하기
     }
-   
   };
 
   const handleChange = (event) => {
-    const {id,value}=event.target
-    setFormData({...formData,[id]:value})
+    const { id, value } = event.target;
+    setFormData({ ...formData, [id]: value });
     //form에 데이터 넣어주기
   };
 
   const addStock = () => {
-    setStock([...stock,[]])
+    setStock([...stock, []]);
     //재고타입 추가시 배열에 새 배열 추가
   };
 
   const deleteStock = (idx) => {
-    const newStock=stock.filter((item,index)=>index !== idx)
-    console.log(newStock)
-    setStock(newStock)
+    const newStock = stock.filter((item, index) => index !== idx);
+    console.log(newStock);
+    setStock(newStock);
     //재고 삭제하기
   };
 
   const handleSizeChange = (value, index) => {
-    let newStock=[...stock]
-    newStock[index][0] = value
+    let newStock = [...stock];
+    newStock[index][0] = value;
     //  재고 사이즈 변환하기
   };
 
   const handleStockChange = (value, index) => {
-    let newStock=[...stock]
-    newStock[index][1]=value
+    let newStock = [...stock];
+    newStock[index][1] = value;
     //재고 수량 변환하기
   };
-  
+
   const onHandleCategory = (event) => {
     if (formData.category.includes(event.target.value)) {
       const newCategory = formData.category.filter(
@@ -106,30 +113,38 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
     }
   };
 
-  const uploadImage = (url) => {
-    setFormData({...formData,image:url})
-    //이미지 업로드
+  const uploadImage = (imageUrl) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      image: [...prevData.image, imageUrl],
+    }));
   };
+  console.log(formData, "formData!!!!");
+ 
+ 
+
+ 
 
   useEffect(() => {
     if (showDialog) {
       if (mode === "edit") {
-        setFormData(selectedProduct)
-        const stockArray = Object.keys(selectedProduct.stock).map((size)=>[
+        setFormData(selectedProduct);
+        const stockArray = Object.keys(selectedProduct.stock).map((size) => [
           size,
-          selectedProduct.stock[size]])
-setStock(stockArray)
+          selectedProduct.stock[size],
+        ]);
+        setStock(stockArray);
         // 선택된 데이터값 불러오기 (재고 형태 객체에서 어레이로 바꾸기)
       } else {
-        setFormData({...InitialFormData})
-        setStock([])
+        setFormData({ ...InitialFormData });
+        setStock([]);
         // 초기화된 값 불러오기
       }
     }
   }, [showDialog]);
 
   //에러나면 토스트 메세지 보여주기
-
+  console.log(formData, "formData!!!!!!!!!!!!!!");
   return (
     <Modal show={showDialog} onHide={handleClose}>
       <Modal.Header closeButton>
@@ -243,13 +258,16 @@ setStock(stockArray)
           <Form.Label>Image</Form.Label>
           <CloudinaryUploadWidget uploadImage={uploadImage} />
 
-          <img
-            id="uploadedimage"
-            src={formData.image}
-            className="upload-image mt-2"
-            alt="uploadedimage"
-          ></img>
+          {formData.image.map((imageUrl, index) => (
+            <img
+              key={index}
+              src={imageUrl}
+              className="upload-image mt-2"
+              alt={`업로드된 이미지 ${index}`}
+            />
+          ))}
         </Form.Group>
+
 
         <Row className="mb-3">
           <Form.Group as={Col} controlId="price">

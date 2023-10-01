@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const LOCAL_BACKEND = process.env.REACT_APP_BACKEND_PROXY;
+const LOCAL_BACKEND = process.env.REACT_APP_LOCAL_BACKEND;
 console.log("proxy", LOCAL_BACKEND);
 
 const api = axios.create({

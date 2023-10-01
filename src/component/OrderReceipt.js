@@ -4,9 +4,11 @@ import { useNavigate } from "react-router";
 import { useLocation } from "react-router-dom";
 import { currencyFormat } from "../utils/number";
 
-const OrderReceipt = ({cartList,totalPrice}) => {
+const OrderReceipt = ({cartList,totalPrice,totalDisPrice}) => {
   const location = useLocation();
   const navigate = useNavigate();
+
+  
 
   return (
     <div className="receipt-container">
@@ -24,11 +26,28 @@ const OrderReceipt = ({cartList,totalPrice}) => {
       <div className="display-flex space-between receipt-title">
         <div>
           <strong>Total:</strong>
+         
         </div>
         <div>
           <strong>${totalPrice}</strong>
         </div>
+        
       </div>
+      <div className="display-flex space-between receipt-title">
+        <div>
+          <strong>Discounted Total:</strong>
+         
+        </div>
+        <div>
+          <strong>${currencyFormat(totalDisPrice)}</strong>
+        </div>
+        
+      </div>
+
+
+
+
+
       {location.pathname.includes("/cart") && (
         <Button
           variant="dark"

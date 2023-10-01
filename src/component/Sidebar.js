@@ -35,7 +35,7 @@ const Sidebar = () => {
             className="sidebar-item"
             onClick={() => handleSelectMenu("/admin/req")}
           >
-           Request
+           Admin Manage
           </li>
 
         </ul>

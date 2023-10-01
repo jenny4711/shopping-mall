@@ -6,6 +6,7 @@ import { productActions } from "../action/productAction";
 import { cartActions } from "../action/cartAction";
 import "../style/productDetail.style.css";
 import ReqQty from '../component/ReqQty';
+import Images from '../component/Images';
 
 const ProductDetail = () => {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ const ProductDetail = () => {
   const [openReq,setOpenReq]=useState(false);
   const { productDetail } = useSelector((state) => state.product);
   const { user } = useSelector((state) => state.user);
+  const [move,setMove]=useState(false)
   const navigate = useNavigate();
 
 
@@ -45,12 +47,16 @@ const ProductDetail = () => {
   return (
     <Container className="product-detail-card">
       <Row>
-        <Col sm={6}>
-          <img
-            src={productDetail && productDetail?.image}
-            className="w-100"
-            alt="image"
-          />
+      <Col sm={6} className='product-detail-img'>
+          {productDetail && productDetail.image && (
+            <Row>
+              {productDetail.image.map((img, idx) => (
+                <Col key={idx} md={6} className="mb-3">
+                  <Images img={img} idx={idx} setMove={setMove} />
+                </Col>
+              ))}
+            </Row>
+          )}
         </Col>
         <Col className="product-info-area" sm={6}>
           <div className="product-info">
@@ -73,10 +79,11 @@ const ProductDetail = () => {
             }}
           >
             <Dropdown.Toggle
-              className="size-drop-down"
+              className={!move?"size-drop-down":"fixed-drop-down"}
               variant={sizeError ? "outline-danger" : "outline-dark"}
               id="dropdown-basic"
               align="start"
+              
             >
               {size === "" ? "사이즈 선택" : size.toUpperCase()}
             </Dropdown.Toggle>

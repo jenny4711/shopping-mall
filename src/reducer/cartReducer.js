@@ -11,6 +11,7 @@ const initialState = {
   cartList:[],
   totalPrice:0,
   error:"",
+  totalDisPrice:0,
   cartUserInfo:{},
 };
 
@@ -79,7 +80,15 @@ const cartSlice=createSlice({
     getCartQtyFail(state,action){
       state.loading=false;
       state.error=action.payload;
-    }
+    },
+    getDiscountPriceSuccess(state,action){
+      state.loading=false;
+      state.totalDisPrice=action.payload;
+    },
+    getCartDisPriceFail(state,action){
+      state.loading=false;
+      state.error=action.payload;
+    },
 
   }
 })

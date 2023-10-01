@@ -1,0 +1,9 @@
+.MainBoard{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  padding:20px;
+  background-color: black;
+  margin-bottom:50px;
+  margin-top:50px;
+}

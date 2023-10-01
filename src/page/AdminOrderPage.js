@@ -29,6 +29,7 @@ const AdminOrderPage = () => {
     "Order Item",
     "Address",
     "Total Price",
+    "Discount Price",
     "Status",
   ];
 

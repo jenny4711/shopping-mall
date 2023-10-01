@@ -1,9 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { currencyFormat } from "../utils/number";
-import '../style/ProductCard.style.css'
-const ProductCard = ({showPrice, item }) => {
- console.log(showPrice,'show')
+
+const ProductCard = ({ showPrice,item }) => {
+
   const navigate = useNavigate();
 
   const showProduct = (id) => {
@@ -17,7 +17,8 @@ const ProductCard = ({showPrice, item }) => {
   return (
     <>
       <div className="card" onClick={() => showProduct(item._id)}>
-        <img src={item.image} alt="" />
+        
+        <img src={item.image[0]} alt="" />
         <div>{item.name}</div>
         <div className={!showPrice?'none':''}>$ {currencyFormat(item.price)}</div>
        

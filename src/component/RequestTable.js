@@ -28,7 +28,7 @@ const RequestTable = ( {idx,item,header,deleteItem}) => {
         <th>{item.size}</th>
         <th>{item.qty}</th>
        <th>
-        <Button variant='dark' className='reqTable-btn'  onClick={()=>deleteItem(item._id)}>delete</Button>
+        <Button variant='dark' size='md' className='reqTable-btn'  onClick={()=>deleteItem(item._id)}>delete</Button>
        </th>
        </tr>
       </tbody>

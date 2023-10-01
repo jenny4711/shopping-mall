@@ -11,7 +11,7 @@ import { cc_expires_format } from "../utils/number";
 
 const PaymentPage = () => {
   const dispatch = useDispatch();
-  const { cartList, totalPrice, cartUserInfo } = useSelector(
+  const { cartList, totalPrice, cartUserInfo,totalDisPrice } = useSelector(
     (state) => state.cart
   );
   const { orderNum, error } = useSelector((state) => state.order);
@@ -37,7 +37,9 @@ const PaymentPage = () => {
     cartUserInfo && cartUserInfo.lastName ? cartUserInfo.lastName : "";
   const initialEmail =
     cartUserInfo && cartUserInfo.email ? cartUserInfo.email : "";
-  console.log(initialFirstName, "boolean!!!!!!");
+
+  const totalAmount = totalDisPrice !==0 ?totalDisPrice:"";  
+  
   const [shipInfo, setShipInfo] = useState({
     firstName: "",
     lastName: "",
@@ -47,7 +49,7 @@ const PaymentPage = () => {
     zip: "",
   });
 
-
+  // ...
 
   useEffect(() => {
     if (firstLoading) {
@@ -65,6 +67,7 @@ const PaymentPage = () => {
 
     const data = {
       totalPrice,
+      discountPrice:totalAmount,
       shipTo: { address, city, zip },
       contact: { firstName, lastName, contact },
       orderList: cartList.map((item) => {
@@ -79,6 +82,7 @@ const PaymentPage = () => {
 
     const dataByAct = {
       totalPrice,
+      discountPrice:totalAmount,
       shipTo: { address: initialAddress, city: initialCity, zip: initialZip },
       contact: {
         firstName: initialFirstName,
@@ -222,7 +226,7 @@ const PaymentPage = () => {
                   </Form.Group>
                 </Row>
                 <div className="mobile-receipt-area">
-                  <OrderReceipt cartList={cartList} totalPrice={totalPrice} />
+                  <OrderReceipt cartList={cartList} totalPrice={totalPrice} totalDisPrice={totalDisPrice} />
                 </div>
                 <div>
                   <h2 className="payment-title">결제 정보</h2>
@@ -245,7 +249,7 @@ const PaymentPage = () => {
           </div>
         </Col>
         <Col lg={5} className="receipt-area">
-          <OrderReceipt cartList={cartList} totalPrice={totalPrice} />
+          <OrderReceipt cartList={cartList} totalPrice={totalPrice} totalDisPrice={totalAmount} />
         </Col>
       </Row>
     </Container>

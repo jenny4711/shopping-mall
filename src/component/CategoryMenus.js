@@ -1,13 +1,13 @@
-import React from 'react';
+import React ,{useRef}from 'react';
 import { Popover, OverlayTrigger } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import '../style/CategoryMenu.css'
 
 const CategoryMenus = ({ menu , productList }) => {
-  
+  const ref = useRef(null)
   const popover = (
     <Popover id={`popover-positioned-${menu}`} placement="bottom">
-      <Popover.Body>
+      <Popover.Body >
         {menu === "Accessories"? (<ul className='popver-links'>
           <li>
             <Link to={`/?name=woman-${menu.toLowerCase()}`}>{menu}-Woman</Link>
@@ -88,8 +88,8 @@ const CategoryMenus = ({ menu , productList }) => {
 
 
   return (
-    <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
-      <span>{menu}</span>
+    <OverlayTrigger  trigger={['hover','focus']} delay={{show:100,hide:1000}}  placement="bottom" overlay={popover}>
+      <span ref={ref}>{menu}</span>
     </OverlayTrigger>
   );
 }

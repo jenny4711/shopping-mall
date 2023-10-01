@@ -16,6 +16,7 @@ import '../style/navbar.css'
 import CategoryMenus from './CategoryMenus';
 
 
+
 const Navbar = ({ user,}) => {
   const dispatch = useDispatch();
   const {cartItemQty}=useSelector(state=>state.cart)
@@ -33,7 +34,7 @@ const Navbar = ({ user,}) => {
     
   ];
   let [width, setWidth] = useState(0);
-  let [show,setShow]=useState(false)
+ 
   const [openMenu, setOpenMenu] = useState(null);
   let [saveMenu,setSaveMenu]=useState("")
   let navigate = useNavigate();
@@ -51,7 +52,7 @@ const Navbar = ({ user,}) => {
       if (event.target.value === "") {
         return navigate("/");
       }
-      navigate(`?name=${event.target.value}`);
+      navigate(`?item=${event.target.value}`);
     }
   };
   const logout = () => {
@@ -88,12 +89,14 @@ const Navbar = ({ user,}) => {
 
         <div className="side-menu-list" id="menu-list">
           {menuList.map((menu, index) => (
-            <button key={index}>
-                <CategoryMenus menu={menu} productList={productList} />
-            </button>
-           
+            <div key={index}>
+              <CategoryMenus menu={menu} productList={productList} />
+             
+            </div>
+       
           ))}
         </div>
+        
       </div>
       {user && user.level === "admin" && (
         <Link to="/admin/product?page=1" className="link-area">
@@ -149,16 +152,24 @@ const Navbar = ({ user,}) => {
           <img width={100} src="/image/hm-logo.png" alt="hm-logo.png" />
         </Link>
       </div>
+
       <div className="nav-menu-area">
-      <ul className="menu">
+      <div
+      defaultActiveKey="profile"
+      id="fill-tab-example"
+      className="mb-3 category"
+      fill
+    >
         {menuList.map((menu, index) => (
-          <li className='navb-li' key={index}>
-            <CategoryMenus menu={menu} />
-          </li>
-        ))}
-      </ul>
-        
        
+    <CategoryMenus menu={menu}/>
+        
+            
+        
+        ))}
+      </div>
+      
+      
 
         {!isMobile && ( // admin페이지에서 같은 search-box스타일을 쓰고있음 그래서 여기서 서치박스 안보이는것 처리를 해줌
           <div className="search-box landing-search-box ">
@@ -171,6 +182,8 @@ const Navbar = ({ user,}) => {
           </div>
         )}
       </div>
+
+     
     </div>
   );
 };

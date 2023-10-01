@@ -22,3 +22,11 @@
     color:black;
     border:2px solid black;
 }
+
+.product-detail-card{
+    margin-top:60px;
+    
+}
+.fixed-drop-down{
+display:none;
+}
