@@ -29,3 +29,14 @@
   width:600px;
   height:600px;
 }
+@media only screen and (max-width:768px){
+  slick-slide {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .Md-img{
+    width:100%;
+    height:50%;
+  }
+}

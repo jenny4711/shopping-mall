@@ -20,25 +20,27 @@ const ProductAll = () => {
   const searchParamsItem= new URLSearchParams(location.search)
  const [show,setShow]=useState(true)
  const isMobile = window.navigator.userAgent.indexOf("Mobile") !== -1;
-console.log(board,'board')
+
 
 let item = searchParamsItem.get('item'); 
   let name = searchParams.get("name");
-  console.log(name,'name')
-  console.log(item,'item')
+
 
   useEffect(()=>{
     if(level && level === 'customer' || level && level === 'admin'){
        setShowPrice(true)
+       
     }
 
   },[level])
   useEffect(()=>{
     dispatch(boardActions.getAllBoard())
+    setShow(true)
   },[])
 
   useEffect(() => {
     dispatch(productActions.getProductList());
+    setShow(true)
   }, []);
   useEffect(() => {
     const newItem =
