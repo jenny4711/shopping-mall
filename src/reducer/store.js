@@ -6,6 +6,7 @@ import commonUiReducer from "./commonUIReducer";
 import orderReducer from "./orderReducer";
 import requestReducer from './requestReducer';
 import discountReducer from './discountReducer';
+import boardReducer from './boardReducer';
 const store = configureStore({
   reducer: {
     user: userReducer,
@@ -15,6 +16,7 @@ const store = configureStore({
     order: orderReducer,
     reqItem:requestReducer,
     discount:discountReducer,
+    board:boardReducer,
   },
 });
 export default store;
