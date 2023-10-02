@@ -64,6 +64,7 @@ dispatch(discountCodeActions.checkCode(discountCode));
         </Col>
         
       </Row>
+      <br/>
       <form onSubmit={handleSubmit}>
         <label>할인코드</label>
         <input
