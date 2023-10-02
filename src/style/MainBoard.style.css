@@ -1,4 +1,4 @@
-.MainBoard{
+.MainBoard-img{
   display:flex;
   justify-content: center;
   align-items: center;
@@ -6,4 +6,26 @@
   background-color: black;
   margin-bottom:50px;
   margin-top:50px;
+ 
+  
+}
+
+.slick-center img {
+  display: block;
+  margin: 0 auto; 
+}
+
+
+.slick-slide {
+  transition: transform 0.3s ease-in-out; 
+}
+
+
+.slick-slide > div {
+  padding: 20px; 
+}
+
+.Md-img{
+  width:600px;
+  height:600px;
 }

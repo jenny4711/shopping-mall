@@ -7,16 +7,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { productActions } from "../action/productAction";
 import { commonUiActions } from "../action/commonUiAction";
 import MainBoard from '../component/MainBoard';
+import { boardActions } from '../action/boardAction';
 const ProductAll = () => {
   const dispatch = useDispatch();
   const { productList } = useSelector((state) => state.product);
   const {level}=useSelector((state)=>state.user.user || {})
+  const {board}=useSelector((state)=>state.board)
   const [showList, setShowList] = useState([]);
   const [showPrice,setShowPrice]=useState(false)
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const searchParamsItem= new URLSearchParams(location.search)
  const [show,setShow]=useState(true)
+ const isMobile = window.navigator.userAgent.indexOf("Mobile") !== -1;
+console.log(board,'board')
 
 let item = searchParamsItem.get('item'); 
   let name = searchParams.get("name");
@@ -29,6 +33,9 @@ let item = searchParamsItem.get('item');
     }
 
   },[level])
+  useEffect(()=>{
+    dispatch(boardActions.getAllBoard())
+  },[])
 
   useEffect(() => {
     dispatch(productActions.getProductList());
@@ -81,7 +88,7 @@ console.log(showList,'list!')
   return (
     <Container>
       <div className={!show?'none':""} >
-       <MainBoard/>
+       <MainBoard board={board}/>
        </div>
       <Row>
         {showList.map((item) => (

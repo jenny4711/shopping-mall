@@ -1,11 +1,35 @@
-import React from 'react'
-import "../style/MainBoard.style.css"
-const MainBoard = () => {
-  return (
-    <div className='MainBoard'>
-      <img src='https://i.pinimg.com/564x/3c/08/a5/3c08a57c74e452814f623835288b7ab4.jpg'/>
-    </div>
-  )
-}
+import React from "react";
+import Slider from "react-slick";
 
-export default MainBoard
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "../style/MainBoard.style.css";
+
+const MainBoard = ({ board }) => {
+  let newImg = board && board?.filter((img, idx) => img.visible !== false);
+  console.log(newImg, "newImg");
+
+  let settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    centerMode: true,
+    centerPadding: "0px",
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
+  return (
+    <Slider {...settings}>
+      {newImg?.map((img, idx) => (
+        <div className="MainBoard-img" key={idx}>
+          <img className="Md-img" src={img.img} alt={`image-${idx}`} />
+        </div>
+      ))}
+    </Slider>
+  );
+};
+
+export default MainBoard;
