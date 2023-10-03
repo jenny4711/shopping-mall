@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
 import ProductCard from "../component/ProductCard";
-import { Row, Col, Container } from "react-bootstrap";
+import { Row, Col, Container, Alert } from "react-bootstrap";
 
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { productActions } from "../action/productAction";
-
+import { commonUiActions } from "../action/commonUiAction";
 import MainBoard from "../component/MainBoard";
 import { boardActions } from "../action/boardAction";
 import ProductCardByCat from "../component/ProductCardByCat";
-
 import "../style/ProductCardByCat.style.css";
 
 const ProductAll = () => {
   const dispatch = useDispatch();
+  
   const { productList } = useSelector((state) => state.product);
   const { level } = useSelector((state) => state.user.user || {});
   const { board } = useSelector((state) => state.board);
@@ -69,11 +69,17 @@ const ProductAll = () => {
     const findBySearch = newItem?.filter((find) => find.name === item);
 
     if (findBySearch.length === 0) {
-      setShow(true);
+      if (item) {
+        dispatch(
+          commonUiActions.showToastMessage("아이템을 찾을수 없습니다!", "error")
+        );
+      }
 
+      setShow(true);
       setShowList(newItem);
     } else {
       setShow(false);
+
       setShowList(findBySearch);
     }
   }, [productList, setShow, setShowList, item]);
