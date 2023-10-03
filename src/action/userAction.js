@@ -1,14 +1,13 @@
 import api from "../utils/api";
 import { userActionss } from "../reducer/userReducer";
-// import * as types from "../constants/user.constants";
 import { commonUiActions } from "./commonUiAction";
 import { cartActionss } from "../reducer/cartReducer";
 import { cartActions } from "./cartAction";
-import * as commonTypes from "../constants/commonUI.constants";
+
 const loginWithToken = () => async (dispatch) => {
   try {
     const response = await api.get("/user/me");
-console.log(response.data.user)
+
     if (response.status !== 200) throw new Error(response.error);
     dispatch(userActionss.loginTokenSuccess(response.data.user));
   } catch (error) {
@@ -46,7 +45,7 @@ const loginWithGoogle = (token) => async (dispatch) => {
   try {
     dispatch(userActionss.googleLoginRequest());
     const res = await api.post("/auth/google", { token });
-    console.log(res);
+
     if (res.status !== 200) throw new Error(res.error);
     sessionStorage.setItem("token", res.data.token);
     dispatch(userActionss.googleLoginSuccess(res.data));
@@ -57,12 +56,18 @@ const loginWithGoogle = (token) => async (dispatch) => {
 };
 
 const registerUser =
-  ({ email, firstName,lastName,address ,password }, navigate) =>
+  ({ email, firstName, lastName, address, password }, navigate) =>
   async (dispatch) => {
     try {
       dispatch(userActionss.registerUserRequest());
-      const response = await api.post("/user", { email, firstName,lastName,address ,password });
-      console.log(response);
+      const response = await api.post("/user", {
+        email,
+        firstName,
+        lastName,
+        address,
+        password,
+      });
+
       if (response.status !== 200) throw new Error(response.error);
 
       dispatch(userActionss.registerUserSuccess());

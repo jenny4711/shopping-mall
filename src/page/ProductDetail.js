@@ -37,7 +37,7 @@ const ProductDetail = () => {
   const selectSize = (value) => {
     setSize(value);
     if (sizeError) setSizeError(false);
-    console.log(value, "value!!!!!1");
+  
   };
 
   useEffect(() => {

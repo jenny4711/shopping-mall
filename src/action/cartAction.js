@@ -8,7 +8,7 @@ const addToCart =
     try {
       dispatch(cartActionss.addToCardRequest());
       const response = await api.post("/cart", { productId: id, size, qty: 1 });
-      console.log(response.data, "cart!!!!!!!!!!!!!!");
+    
       if (response.status !== 200) throw new Error(response.error);
 
       dispatch(cartActionss.addToCartSuccess(response.data.cartItemQty));
@@ -26,7 +26,7 @@ const getCartList = () => async (dispatch) => {
   try {
     dispatch(cartActionss.getCartListRequest());
     const response = await api.get("/cart");
-   console.log(response,'getCartList!!!!!!!!!!')
+ 
 
     dispatch(cartActionss.getCartListSuccess(response.data.data.items));
     dispatch(cartActionss.getCartUser(response.data.data.userId))
@@ -39,7 +39,7 @@ const deleteCartItem = (id) => async (dispatch) => {
   try {
     dispatch(cartActionss.deleteCartItemRequest());
     const response = await api.delete(`/cart/${id}`);
-    console.log(response, "delete?");
+   
     if (response.status !== 200) throw new Error(response.error);
 
     dispatch(cartActionss.deleteCartItemSuccess(response.data));
@@ -56,7 +56,7 @@ const updateQty = (id, value) => async (dispatch) => {
   try {
     dispatch(cartActionss.updateCartItemRequest());
     const response = await api.put(`/cart/updateQty/${id}`, { qty: value });
-    console.log(response.data.data, "updateQty!f!!!!!!!!   ");
+   
     if (response.status !== 200) throw new Error(response.error);
   
     dispatch(cartActionss.updateCartItemSuccess(response.data.data));
@@ -87,7 +87,7 @@ const getDiscount =(totalPrice,discount)=>(dispatch)=>{
   try{
     const total =totalPrice - (totalPrice * discount/100)
     dispatch(cartActionss.getDiscountPriceSuccess(total))
-    console.log(total,'total')
+   
   }catch(error){
     dispatch(cartActionss.getCartDisPriceFail(error.error))
   }

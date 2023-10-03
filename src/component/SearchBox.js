@@ -9,11 +9,11 @@ const SearchBox = ({ searchQuery, setSearchQuery, placeholder, field }) => {
 
   const onCheckEnter = (event) => {
     if (event.key === "Enter") {
-      console.log(event.target.value)
+      
       setSearchQuery({ ...searchQuery, page: 1, [field]: event.target.value });
     }
   };
-  console.log(searchQuery,'query')
+  
   return (
     <div className="search-box">
       <FontAwesomeIcon icon={faSearch} />

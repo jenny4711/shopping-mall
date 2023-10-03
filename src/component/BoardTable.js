@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
-import { Form, Button } from "react-bootstrap";
+import {  Button } from "react-bootstrap";
 import { boardActions } from "../action/boardAction";
 
 const BoardTable = ({ id, title, img, visible, updateBoard }) => {

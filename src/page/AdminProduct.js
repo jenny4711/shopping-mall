@@ -7,7 +7,6 @@ import { productActionss } from "../reducer/productReducer";
 import NewItemDialog from "../component/NewItemDialog";
 import ReactPaginate from "react-paginate";
 import { useSearchParams, useNavigate } from "react-router-dom";
-import { commonUiActions } from "../action/commonUiAction";
 import ProductTable from "../component/ProductTable";
 
 const AdminProduct = () => {
@@ -15,7 +14,7 @@ const AdminProduct = () => {
   const { productList, totalPageNum, selectedProduct } = useSelector(
     (state) => state.product
   );
-  const [formData, setFormData] = useState(selectedProduct);
+
   const [query, setQuery] = useSearchParams();
   const dispatch = useDispatch();
   const [showDialog, setShowDialog] = useState(false);

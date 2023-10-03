@@ -30,7 +30,7 @@ const Navbar = ({ user }) => {
   }, []);
 
   const onCheckEnter = (event) => {
-    console.log(isMobile, "isMobile");
+   
     if (event.key === "Enter") {
       if (event.target.value === "") {
         return navigate("/");
@@ -144,7 +144,7 @@ const Navbar = ({ user }) => {
           ))}
         </div>
 
-        {!isMobile && ( // admin페이지에서 같은 search-box스타일을 쓰고있음 그래서 여기서 서치박스 안보이는것 처리를 해줌
+        {!isMobile && ( 
           <div className="search-box landing-search-box ">
             <FontAwesomeIcon icon={faSearch} />
             <input

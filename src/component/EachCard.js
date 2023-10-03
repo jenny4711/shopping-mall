@@ -5,7 +5,7 @@ const EachCard = ({img,id,name,price,showPrice}) => {
   console.log(showPrice,'eachCard!')
   const navigate = useNavigate();
   const showProduct = (id) => {
-    console.log(id,'id!!!!!!!!!!')
+   
     if(showPrice){
       return navigate(`/product/${id}`);
       

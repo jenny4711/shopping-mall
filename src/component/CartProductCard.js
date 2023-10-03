@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../action/cartAction";
 import { currencyFormat } from "../utils/number";
-import { commonUiActions } from '../action/commonUiAction';
+
 
 const CartProductCard = ({ item }) => {
   const dispatch = useDispatch();
@@ -22,13 +22,12 @@ const CartProductCard = ({ item }) => {
    
     dispatch(cartActions.updateQty(id, value));
    
-    //아이템 수량을 수정한다
+   
   };
 
   const deleteCart = (id) => {
     dispatch(cartActions.deleteCartItem(id));
 
-    //아이템을 지운다
   };
 
   return (

@@ -6,7 +6,6 @@ import "../style/paymentPage.style.css";
 import { useSelector, useDispatch } from "react-redux";
 import { orderActions } from "../action/orderAction";
 import { useNavigate } from "react-router";
-import { commonUiActions } from "../action/commonUiAction";
 import { cc_expires_format } from "../utils/number";
 
 const PaymentPage = () => {
