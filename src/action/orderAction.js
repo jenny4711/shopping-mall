@@ -60,6 +60,8 @@ const updateOrder = (id, status) => async (dispatch) => {
     if (res.status !== 200) throw new Error(res.error);
 
     dispatch(orderActionss.setSelectedOrder(res.data));
+    dispatch(commonUiActions.showToastMessage("오더가 수정되었습니다.", "error"));
+
   } catch (error) {
     dispatch(orderActionss.AllFail(error.error));
     dispatch(commonUiActions.showToastMessage(error.error, "error"));

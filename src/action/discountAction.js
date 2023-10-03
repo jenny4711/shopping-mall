@@ -11,7 +11,7 @@ const createCode=({code,amount,validFrom,validTo})=>async(dispatch)=>{
     dispatch(commonUiActions.showToastMessage("코드생성 완료","success"))
   }catch(error){
     dispatch(discountCodeActionss.allFail(error.error))
-    dispatch(commonUiActions.showToastMessage(error.error, "error"));
+    dispatch(commonUiActions.showToastMessage("코드가 정삭적으로 생성되었습니다", "error"));
   }
 }
 
@@ -34,7 +34,7 @@ const checkCode=(code)=>async(dispatch)=>{
     dispatch(commonUiActions.showToastMessage("코드사용 가능","success"))
   }catch(error){
     dispatch(discountCodeActionss.allFail(error.error))
-    dispatch(commonUiActions.showToastMessage(error.error, "error"));
+    dispatch(commonUiActions.showToastMessage("코드사용 불가", error.error));
   }
 }
 const deleteCode=(id)=>async(dispatch)=>{
