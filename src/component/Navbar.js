@@ -36,6 +36,7 @@ const Navbar = ({ user }) => {
         return navigate("/");
       }
       navigate(`?item=${event.target.value}`);
+      event.target.value=""
     }
   };
   const logout = () => {
