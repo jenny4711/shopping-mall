@@ -1,6 +1,6 @@
 import React from "react";
 import { Row, Col, Badge } from "react-bootstrap";
-
+import { badgeBg } from "../constants/order.constants";
 
 const OrderStatusCard = ({orderList}) => {
   
