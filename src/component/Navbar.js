@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import {
@@ -11,44 +11,26 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../action/userAction";
-import { cartActions } from '../action/cartAction';
-import '../style/navbar.css'
-import CategoryMenus from './CategoryMenus';
+import { cartActions } from "../action/cartAction";
+import "../style/navbar.css";
+import CategoryMenus from "./CategoryMenus";
 
-
-
-const Navbar = ({ user,}) => {
+const Navbar = ({ user }) => {
   const dispatch = useDispatch();
-  const {cartItemQty}=useSelector(state=>state.cart)
-  const {productList}=useSelector(state=>state.product)
+  const { cartItemQty } = useSelector((state) => state.cart);
+  const { productList } = useSelector((state) => state.product);
   const isMobile = window.navigator.userAgent.indexOf("Mobile") !== -1;
   const [showSearchBox, setShowSearchBox] = useState(false);
-  const menuList = [
-    "Woman",
-    "Men",
-    "Baby",
-    "Kids",
-    "Accessories"
-    
-   
-    
-  ];
+  const menuList = ["Woman", "Men", "Baby", "Kids", "Accessories"];
   let [width, setWidth] = useState(0);
- 
-  const [openMenu, setOpenMenu] = useState(null);
-  let [saveMenu,setSaveMenu]=useState("")
   let navigate = useNavigate();
- 
- 
- 
 
-
-  useEffect(()=>{
-    dispatch(cartActions.getCartQty())
-    },[])
+  useEffect(() => {
+    dispatch(cartActions.getCartQty());
+  }, []);
 
   const onCheckEnter = (event) => {
-    console.log(isMobile,'isMobile')
+    console.log(isMobile, "isMobile");
     if (event.key === "Enter") {
       if (event.target.value === "") {
         return navigate("/");
@@ -59,7 +41,6 @@ const Navbar = ({ user,}) => {
   const logout = () => {
     dispatch(userActions.logout());
   };
-
 
   return (
     <div>
@@ -92,12 +73,9 @@ const Navbar = ({ user,}) => {
           {menuList.map((menu, index) => (
             <div key={index}>
               <CategoryMenus menu={menu} productList={productList} />
-             
             </div>
-       
           ))}
         </div>
-        
       </div>
       {user && user.level === "admin" && (
         <Link to="/admin/product?page=1" className="link-area">
@@ -128,7 +106,7 @@ const Navbar = ({ user,}) => {
               <FontAwesomeIcon icon={faShoppingBag} />
               {!isMobile && (
                 <span style={{ cursor: "pointer" }}>{`쇼핑백(${
-                  cartItemQty?cartItemQty : 0
+                  cartItemQty ? cartItemQty : 0
                 })`}</span>
               )}
             </div>
@@ -148,29 +126,23 @@ const Navbar = ({ user,}) => {
         </div>
       </div>
 
-    <div className="nav-logo">
+      <div className="nav-logo">
         <Link to="/">
           <img width={100} src="/image/hm-logo.png" alt="hm-logo.png" />
         </Link>
       </div>
 
-      <div className={!isMobile?"nav-menu-area":"none"}>
-      <div
-      defaultActiveKey="profile"
-      id="fill-tab-example"
-      className="mb-3 category"
-      fill
-    >
-        {menuList.map((menu, index) => (
-       
-    <CategoryMenus menu={menu}/>
-        
-            
-        
-        ))}
-      </div>
-      
-      
+      <div className={!isMobile ? "nav-menu-area" : "none"}>
+        <div
+          defaultActiveKey="profile"
+          id="fill-tab-example"
+          className="mb-3 category"
+          fill
+        >
+          {menuList.map((menu) => (
+            <CategoryMenus menu={menu} />
+          ))}
+        </div>
 
         {!isMobile && ( // admin페이지에서 같은 search-box스타일을 쓰고있음 그래서 여기서 서치박스 안보이는것 처리를 해줌
           <div className="search-box landing-search-box ">
@@ -183,8 +155,6 @@ const Navbar = ({ user,}) => {
           </div>
         )}
       </div>
-
-     
     </div>
   );
 };

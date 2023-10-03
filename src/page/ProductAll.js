@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from "react";
 import ProductCard from "../component/ProductCard";
 import { Row, Col, Container } from "react-bootstrap";
-import { useSearchParams } from "react-router-dom";
+
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { productActions } from "../action/productAction";
-import { commonUiActions } from "../action/commonUiAction";
+
 import MainBoard from "../component/MainBoard";
 import { boardActions } from "../action/boardAction";
 import ProductCardByCat from "../component/ProductCardByCat";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+
 import "../style/ProductCardByCat.style.css";
 
 const ProductAll = () => {
@@ -25,10 +23,8 @@ const ProductAll = () => {
   const searchParams = new URLSearchParams(location.search);
   const searchParamsItem = new URLSearchParams(location.search);
   const [show, setShow] = useState(true);
- 
-  const isMobile = window.navigator.userAgent.indexOf("Mobile") !== -1;
 
- 
+  const isMobile = window.navigator.userAgent.indexOf("Mobile") !== -1;
 
   let item = searchParamsItem.get("item");
   let name = searchParams.get("name");
@@ -83,11 +79,11 @@ const ProductAll = () => {
   }, [productList, setShow, setShowList, item]);
 
   const error = useSelector((state) => state.product.error);
-  console.log(showList, "list!");
+
   return (
     <Container>
       <div className={!show ? "none" : ""}>
-        <MainBoard board={board} showPrice={showPrice}/>
+        <MainBoard board={board} showPrice={showPrice} />
       </div>
 
       <Row className={show ? "none" : ""}>

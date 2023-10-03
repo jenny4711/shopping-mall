@@ -3,12 +3,8 @@ import { useDispatch } from "react-redux";
 import { Form, Button } from "react-bootstrap";
 import { boardActions } from "../action/boardAction";
 
-const BoardTable = ({ id, title, img, visible,updateBoard}) => {
+const BoardTable = ({ id, title, img, visible, updateBoard }) => {
   const dispatch = useDispatch();
-  const [visibleError, setVisibleError] = useState(false);
- 
-console.log(visible,'vs')
- 
 
   function deleteBoard(id) {
     dispatch(boardActions.deleteBoard(id));
@@ -28,7 +24,7 @@ console.log(visible,'vs')
             onClick={() => updateBoard(id)}
             className="mr-1"
           >
-            {!visible? "Visible" : "Invisible"}
+            {!visible ? "Visible" : "Invisible"}
           </Button>
         </th>
         <th>

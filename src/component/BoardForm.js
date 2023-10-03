@@ -1,5 +1,5 @@
-import React, { useState,useEffect } from "react";
-import { Container, Form, Button, Alert,Table } from "react-bootstrap";
+import React, { useState} from "react";
+import { Container, Form, Button, Alert} from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { boardActions } from '../action/boardAction';
 
@@ -31,7 +31,7 @@ function handleChange(evt){
   }
   
 }
-console.log(formData,'formdata!!')
+
   return (
     <Container className="CodeForm">
     {error && (
