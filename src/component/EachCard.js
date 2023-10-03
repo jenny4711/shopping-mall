@@ -2,19 +2,23 @@ import React from 'react'
 import { useNavigate } from "react-router-dom";
 import "../style/ProductCardByCat.style.css"
 const EachCard = ({img,id,name,price,showPrice}) => {
+  console.log(showPrice,'eachCard!')
   const navigate = useNavigate();
   const showProduct = (id) => {
     console.log(id,'id!!!!!!!!!!')
-    // if(!showPrice){
-    //   return navigate('/login')
-    // }
-       return navigate(`/product/${id}`);
+    if(showPrice){
+      return navigate(`/product/${id}`);
+      
+    }else{
+      return navigate('/login')
+    }
+      
   
   }
 
   return (
     <div className='ProductCardByCat' >
-    <img onClick={() => showProduct(id)} className='ProductCardByCat-img' width={20} src={img[0]}/>
+    <img onClick={() => showProduct(id)} className='ProductCardByCat-img'  src={img[0]}/>
            
     </div>
   )
