@@ -13,18 +13,23 @@ const CartPage = () => {
   const { cartList, totalPrice,totalDisPrice } = useSelector((state) => state.cart);
   const {code} = useSelector((state)=>state.discount)
   const [discountCode, setDiscountCode] = useState("");
-
+  const [discountInfo, setDiscountInfo] = useState([]); 
  
   const totalAmount = totalDisPrice !== 0?totalDisPrice:""
   async function checkDCCode() {
    
 dispatch(discountCodeActions.checkCode(discountCode));
     
+
+      
+    
   }
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    checkDCCode(); 
+    checkDCCode(); // 할인 코드 적용 함수 호출
   };
 
   useEffect(() => {
@@ -66,7 +71,7 @@ dispatch(discountCodeActions.checkCode(discountCode));
           type="text"
           name="code"
           value={discountCode}
-          onChange={(e) => setDiscountCode(e.target.value)} /
+          onChange={(e) => setDiscountCode(e.target.value)} 
         />
         <button type="submit">적용</button> 
       </form>
