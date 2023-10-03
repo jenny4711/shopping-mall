@@ -29,6 +29,9 @@
   width:600px;
   height:600px;
 }
+.none{
+  display:none;
+}
 @media only screen and (max-width:768px){
   slick-slide {
     display:flex;
