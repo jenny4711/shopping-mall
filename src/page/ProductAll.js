@@ -97,7 +97,7 @@ const ProductAll = () => {
       {/* ---------------------------- */}
 
       <div className={!show ? "none" : ""}>
-        <ProductCardByCat showList={showList} />
+        <ProductCardByCat showList={showList} showPrice={showPrice} />
       </div>
     </Container>
   );
