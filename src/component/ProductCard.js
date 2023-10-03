@@ -18,7 +18,7 @@ const ProductCard = ({ showPrice,item }) => {
     <>
       <div className="card" onClick={() => showProduct(item._id)}>
         
-        <img src={item.image[0]} alt="" />
+        <img className='card-img' src={item.image[0]} alt="" />
         <div>{item.name}</div>
         <div className={!showPrice?'none':''}>$ {currencyFormat(item.price)}</div>
        

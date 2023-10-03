@@ -65,7 +65,7 @@ const Login = () => {
           </div>
 
           <div className="text-align-center mt-2">
-            <p>-외부 계정으로 로그인하기-</p>
+            <p>-외부 계정으로 로그인 있으십니까?-</p>
             <div className="display-center">
               <GoogleLogin
                 onSuccess={handleGoogleLogin}

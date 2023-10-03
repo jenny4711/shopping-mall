@@ -6,41 +6,46 @@ import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { productActions } from "../action/productAction";
 import { commonUiActions } from "../action/commonUiAction";
-import MainBoard from '../component/MainBoard';
-import { boardActions } from '../action/boardAction';
+import MainBoard from "../component/MainBoard";
+import { boardActions } from "../action/boardAction";
+import ProductCardByCat from "../component/ProductCardByCat";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "../style/ProductCardByCat.style.css";
+
 const ProductAll = () => {
   const dispatch = useDispatch();
   const { productList } = useSelector((state) => state.product);
-  const {level}=useSelector((state)=>state.user.user || {})
-  const {board}=useSelector((state)=>state.board)
+  const { level } = useSelector((state) => state.user.user || {});
+  const { board } = useSelector((state) => state.board);
   const [showList, setShowList] = useState([]);
-  const [showPrice,setShowPrice]=useState(false)
+  const [showPrice, setShowPrice] = useState(false);
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const searchParamsItem= new URLSearchParams(location.search)
- const [show,setShow]=useState(true)
- const isMobile = window.navigator.userAgent.indexOf("Mobile") !== -1;
+  const searchParamsItem = new URLSearchParams(location.search);
+  const [show, setShow] = useState(true);
+ 
+  const isMobile = window.navigator.userAgent.indexOf("Mobile") !== -1;
 
+ 
 
-let item = searchParamsItem.get('item'); 
+  let item = searchParamsItem.get("item");
   let name = searchParams.get("name");
 
-
-  useEffect(()=>{
-    if(level && level === 'customer' || level && level === 'admin'){
-       setShowPrice(true)
-       
+  useEffect(() => {
+    if ((level && level === "customer") || (level && level === "admin")) {
+      setShowPrice(true);
     }
-
-  },[level])
-  useEffect(()=>{
-    dispatch(boardActions.getAllBoard())
-    setShow(true)
-  },[])
+  }, [level]);
+  useEffect(() => {
+    dispatch(boardActions.getAllBoard());
+    setShow(true);
+  }, []);
 
   useEffect(() => {
     dispatch(productActions.getProductList());
-    setShow(true)
+    setShow(true);
   }, []);
   useEffect(() => {
     const newItem =
@@ -51,54 +56,53 @@ let item = searchParamsItem.get('item');
       return item.category.some((category) => category.includes(name));
     });
 
-   
-
     if (findByCat.length === 0) {
-      setShow(true)
+      setShow(true);
       setShowList(newItem);
     } else {
-      setShow(false)
+      setShow(false);
       setShowList(findByCat);
-     
     }
-  }, [productList, setShow,setShowList, name,item]);
+  }, [productList, setShow, setShowList, name, item]);
 
-  useEffect(()=>{
+  useEffect(() => {
     const newItem =
-    productList &&
-    productList?.filter((item, idx) => item.IsDeleted !== true);
+      productList &&
+      productList?.filter((item, idx) => item.IsDeleted !== true);
 
-    const findBySearch = newItem?.filter((find)=>
-    find.name === item
- )
+    const findBySearch = newItem?.filter((find) => find.name === item);
 
- if(findBySearch.length === 0){
-  setShow(true)
-  setShowList(newItem);
- }else{
-  setShow(false)
-  setShowList(findBySearch)
- }
+    if (findBySearch.length === 0) {
+      setShow(true);
 
-
-
-  },[productList,setShow,setShowList,item])
-
+      setShowList(newItem);
+    } else {
+      setShow(false);
+      setShowList(findBySearch);
+    }
+  }, [productList, setShow, setShowList, item]);
 
   const error = useSelector((state) => state.product.error);
-console.log(showList,'list!')
+  console.log(showList, "list!");
   return (
     <Container>
-      <div className={!show?'none':""} >
-       <MainBoard board={board}/>
-       </div>
-      <Row>
+      <div className={!show ? "none" : ""}>
+        <MainBoard board={board} showPrice={showPrice}/>
+      </div>
+
+      <Row className={show ? "none" : ""}>
         {showList.map((item) => (
           <Col md={3} sm={12} key={item._id}>
             <ProductCard showPrice={showPrice} item={item} />
           </Col>
         ))}
       </Row>
+
+      {/* ---------------------------- */}
+
+      <div className={!show ? "none" : ""}>
+        <ProductCardByCat showList={showList} />
+      </div>
     </Container>
   );
 };

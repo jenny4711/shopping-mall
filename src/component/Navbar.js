@@ -39,7 +39,7 @@ const Navbar = ({ user,}) => {
   let [saveMenu,setSaveMenu]=useState("")
   let navigate = useNavigate();
  
-  
+ 
  
 
 
@@ -48,6 +48,7 @@ const Navbar = ({ user,}) => {
     },[])
 
   const onCheckEnter = (event) => {
+    console.log(isMobile,'isMobile')
     if (event.key === "Enter") {
       if (event.target.value === "") {
         return navigate("/");
@@ -147,7 +148,7 @@ const Navbar = ({ user,}) => {
         </div>
       </div>
 
-      <div className="nav-logo">
+    <div className="nav-logo">
         <Link to="/">
           <img width={100} src="/image/hm-logo.png" alt="hm-logo.png" />
         </Link>

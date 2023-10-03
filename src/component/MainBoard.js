@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../style/MainBoard.style.css";
 
-const MainBoard = ({ board }) => {
+const MainBoard = ({ board ,showPrice}) => {
   let newImg = board && board?.filter((img, idx) => img.visible !== false);
   console.log(newImg, "newImg");
 
@@ -26,8 +26,10 @@ const MainBoard = ({ board }) => {
       {newImg?.map((img, idx) => (
         <div className="MainBoard-img" key={idx}>
           <img className="Md-img" src={img.img} alt={`image-${idx}`} />
+          <span className={!showPrice?'none':""}>Code:{img.title}</span>
         </div>
       ))}
+
     </Slider>
   );
 };
