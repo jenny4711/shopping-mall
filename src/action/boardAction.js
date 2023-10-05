@@ -9,6 +9,7 @@ const createBoard=({title,img,visible})=>async(dispatch)=>{
     if(res.status !==200)throw new Error(res.error);
     dispatch(boardActionss.createBoardSuccess(res.data.data))
     dispatch(commonUiActions.showToastMessage("보드생성 완료","success"))
+    dispatch(getAllBoard())
   }catch(error){
     dispatch(boardActionss.allFail(error.error))
     dispatch(commonUiActions.showToastMessage(error.error, "error"));
