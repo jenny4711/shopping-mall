@@ -48,7 +48,7 @@ const deleteCartItem = (id) => async (dispatch) => {
     dispatch(getCartQty());
   } catch (error) {
     dispatch(cartActionss.deleteCartItemFail(error.error));
-    dispatch(commonUiActions.showToastMessage("Error!", error.error));
+    dispatch(commonUiActions.showToastMessage("Error!", "error"));
   }
 };
 
@@ -65,7 +65,7 @@ const updateQty = (id, value) => async (dispatch) => {
     dispatch(getCartQty());
   } catch (error) {
     dispatch(cartActionss.updateCartItemFail(error.error));
-    dispatch(commonUiActions.showToastMessage("Error!", error.error));
+    
   }
 };
 const getCartQty = () => async (dispatch) => {

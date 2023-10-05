@@ -45,7 +45,7 @@ const makeInvisible=(id,isVisible)=>async(dispatch)=>{
 
   }catch(error){
     dispatch(boardActionss.allFail(error.error))
-    dispatch(commonUiActions.showToastMessage(error.error, "error"));
+    dispatch(commonUiActions.showToastMessage("Error", "error"));
   }
 }
 
@@ -61,7 +61,7 @@ const deleteBoard=(id)=>async(dispatch)=>{
 
   }catch(error){
     dispatch(boardActionss.allFail(error.error))
-    dispatch(commonUiActions.showToastMessage(error.error, "error"));
+    dispatch(commonUiActions.showToastMessage("Error", "error"));
   }
 }
 
