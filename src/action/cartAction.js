@@ -64,7 +64,7 @@ const updateQty = (id, value) => async (dispatch) => {
     dispatch(getCartList());
     dispatch(getCartQty());
   } catch (error) {
-    dispatch(cartActionss.updateCartItemFail(error.error));
+    dispatch(cartActionss.updateCartItemFail(error));
     
   }
 };

@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState} from "react";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { Row, Col, Form } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,25 +9,22 @@ import { currencyFormat } from "../utils/number";
 
 const CartProductCard = ({ item }) => {
   const dispatch = useDispatch();
-  const [addError,setAddError]=useState("")
+  const [addError, setAddError] = useState("");
 
   const handleQtyChange = (id, value) => {
-    let itemSize=item.size
-  
-   if(value >item.productId.stock[itemSize]){
-    setAddError("재고가 불중분 합니다!")
-   }else{
-    setAddError("")
-   }
-   
+    let itemSize = item.size;
+
+    if (value > item.productId.stock[itemSize]) {
+      setAddError("재고가 불중분 합니다!");
+    } else {
+      setAddError("");
+    }
+
     dispatch(cartActions.updateQty(id, value));
-   
-   
   };
 
   const deleteCart = (id) => {
     dispatch(cartActions.deleteCartItem(id));
-
   };
 
   return (
@@ -52,9 +49,9 @@ const CartProductCard = ({ item }) => {
             <strong>$ {item.productId.price}</strong>
           </div>
           <div>Size: {item.size.toUpperCase()}</div>
+
           <div>Total:$ {currencyFormat(item.productId.price * item.qty)}</div>
           <div>
-            Quantity:
             <Form.Select
               onChange={(event) =>
                 handleQtyChange(item._id, event.target.value)

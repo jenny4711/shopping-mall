@@ -1,47 +1,46 @@
 import React from "react";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../action/cartAction";
 import CartProductCard from "../component/CartProductCard";
 import OrderReceipt from "../component/OrderReceipt";
-import { discountCodeActions } from '../action/discountAction';
+import { discountCodeActions } from "../action/discountAction";
 import "../style/cart.style.css";
 
 const CartPage = () => {
   const dispatch = useDispatch();
-  const { cartList, totalPrice,totalDisPrice } = useSelector((state) => state.cart);
-  const {code} = useSelector((state)=>state.discount)
+  const { cartList, totalPrice, totalDisPrice } = useSelector(
+    (state) => state.cart
+  );
+  const { code } = useSelector((state) => state.discount);
   const [discountCode, setDiscountCode] = useState("");
-  const [discountInfo, setDiscountInfo] = useState([]); 
- 
-  const totalAmount = totalDisPrice !== 0?totalDisPrice:""
+
+  const totalAmount = totalDisPrice !== 0 ? totalDisPrice : "";
+  console.log(totalPrice, "totalPrice");
+  console.log(cartList, "cartList");
   async function checkDCCode() {
-   
-dispatch(discountCodeActions.checkCode(discountCode));
-    
-
-      
-    
+    dispatch(discountCodeActions.checkCode(discountCode));
   }
-
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    checkDCCode(); // 할인 코드 적용 함수 호출
+    checkDCCode();
   };
+
+  useEffect(() => {
+    dispatch(cartActions.getCartQty());
+  }, []);
 
   useEffect(() => {
     dispatch(cartActions.getCartList());
   }, []);
- 
-  useEffect(()=>{
-    if(discountCode){
-      dispatch(cartActions.getDiscount(totalPrice,code[0].amount))
-    }
 
-  },[code])
+  useEffect(() => {
+    if (discountCode) {
+      dispatch(cartActions.getDiscount(totalPrice, code[0].amount));
+    }
+  }, [code]);
 
   return (
     <Container>
@@ -56,24 +55,25 @@ dispatch(discountCodeActions.checkCode(discountCode));
             </div>
           )}
         </Col>
-       
-    
-        
+
         <Col xs={12} md={5}>
-          <OrderReceipt cartList={cartList} totalPrice={totalPrice} totalDisPrice={totalAmount} />
+          <OrderReceipt
+            cartList={cartList}
+            totalPrice={totalPrice}
+            totalDisPrice={totalAmount}
+          />
         </Col>
-        
       </Row>
-      <br/>
+      <br />
       <form onSubmit={handleSubmit}>
         <label>할인코드</label>
         <input
           type="text"
           name="code"
           value={discountCode}
-          onChange={(e) => setDiscountCode(e.target.value)} 
+          onChange={(e) => setDiscountCode(e.target.value)}
         />
-        <button type="submit">적용</button> 
+        <button type="submit">적용</button>
       </form>
     </Container>
   );
