@@ -4,49 +4,43 @@ import { useNavigate } from "react-router";
 import { useLocation } from "react-router-dom";
 import { currencyFormat } from "../utils/number";
 
-const OrderReceipt = ({cartList,totalPrice,totalDisPrice}) => {
+const OrderReceipt = ({ cartList, totalPrice, totalDisPrice }) => {
   const location = useLocation();
   const navigate = useNavigate();
-
-  
 
   return (
     <div className="receipt-container">
       <h3 className="receipt-title">주문 내역</h3>
       <ul className="receipt-list">
-        {cartList && cartList.map(item=>
-        <li>
-          <div className="display-flex space-between">
-            <div>{item.productId.name}</div>
-
-            <div> $ {item.productId.price}</div>
-          </div>
-        </li>)}
+        {Array.isArray(cartList) && cartList.length > 0 ? (
+          cartList.map((item) => (
+            <li key={item.productId._id}>
+              <div className="display-flex space-between">
+                <div>{item.productId.name}</div>
+                <div> $ {item.productId.price}</div>
+              </div>
+            </li>
+          ))
+        ) : (
+          <li>No items in the cart</li>
+        )}
       </ul>
       <div className="display-flex space-between receipt-title">
         <div>
           <strong>Total:</strong>
-         
         </div>
         <div>
           <strong>${totalPrice}</strong>
         </div>
-        
       </div>
       <div className="display-flex space-between receipt-title">
         <div>
           <strong>Discounted Total:</strong>
-         
         </div>
         <div>
           <strong>${currencyFormat(totalDisPrice)}</strong>
         </div>
-        
       </div>
-
-
-
-
 
       {location.pathname.includes("/cart") && (
         <Button
