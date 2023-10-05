@@ -13,7 +13,7 @@ import "../style/ProductCardByCat.style.css";
 
 const ProductAll = () => {
   const dispatch = useDispatch();
-  
+
   const { productList } = useSelector((state) => state.product);
   const { level } = useSelector((state) => state.user.user || {});
   const { board } = useSelector((state) => state.board);
@@ -24,10 +24,9 @@ const ProductAll = () => {
   const searchParamsItem = new URLSearchParams(location.search);
   const [show, setShow] = useState(true);
 
-  const isMobile = window.navigator.userAgent.indexOf("Mobile") !== -1;
-
-  let item = searchParamsItem.get("item");
-  let name = searchParams.get("name");
+  let name = searchParamsItem.get("name");
+  let toLower = name?.toLowerCase();
+  let items = searchParams.get("items");
 
   useEffect(() => {
     if ((level && level === "customer") || (level && level === "admin")) {
@@ -49,7 +48,7 @@ const ProductAll = () => {
       productList?.filter((item, idx) => item.IsDeleted !== true);
 
     const findByCat = newItem?.filter((item) => {
-      return item.category.some((category) => category.includes(name));
+      return item.category.some((category) => category.includes(items));
     });
 
     if (findByCat.length === 0) {
@@ -59,17 +58,22 @@ const ProductAll = () => {
       setShow(false);
       setShowList(findByCat);
     }
-  }, [productList, setShow, setShowList, name, item]);
+  }, [productList, setShow, setShowList, items]);
 
   useEffect(() => {
     const newItem =
       productList &&
       productList?.filter((item, idx) => item.IsDeleted !== true);
 
-    const findBySearch = newItem?.filter((find) => find.name === item);
+    const findBySearch = newItem?.filter((find) => {
+      if (find.name && typeof find.name === "string") {
+        return find.name.toLowerCase().includes(toLower);
+      }
+      return false;
+    });
 
     if (findBySearch.length === 0) {
-      if (item) {
+      if (name) {
         dispatch(
           commonUiActions.showToastMessage("아이템을 찾을수 없습니다!", "error")
         );
@@ -82,7 +86,7 @@ const ProductAll = () => {
 
       setShowList(findBySearch);
     }
-  }, [productList, setShow, setShowList, item]);
+  }, [productList, setShow, setShowList, toLower]);
 
   const error = useSelector((state) => state.product.error);
 
@@ -99,8 +103,6 @@ const ProductAll = () => {
           </Col>
         ))}
       </Row>
-
-      {/* ---------------------------- */}
 
       <div className={!show ? "none" : ""}>
         <ProductCardByCat showList={showList} showPrice={showPrice} />
