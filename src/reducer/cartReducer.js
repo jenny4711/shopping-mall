@@ -1,10 +1,6 @@
 import * as types from "../constants/cart.constants";
 import {createSlice} from '@reduxjs/toolkit'
-import {
-  LOGIN_SUCCESS,
-  GOOGLE_LOGIN_SUCCESS,
-  LOGOUT,
-} from "../constants/user.constants";
+
 
 const initialState = {
   cartItemQty:0,
@@ -38,7 +34,7 @@ const cartSlice=createSlice({
       state.loading = false;
       state.cartItemQty = action.payload;
     
-      // totalPrice를 업데이트
+     
       state.totalPrice = state.cartList.reduce(
         (total, item) => (total += item.productId.price * item.qty),
         0
@@ -52,7 +48,7 @@ const cartSlice=createSlice({
     updateCartItemSuccess(state,action){
       state.loading=false;
       state.cartList=action.payload;
-      // state.totalPrice=action.payload.reduce((total,item)=>(total+=item.productId.price *item.qty),0).toFixed(2)
+
     },
     getCartListSuccess(state,action){
       state.loading=false;

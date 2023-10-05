@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import {  Button } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import { boardActions } from "../action/boardAction";
 
-const BoardTable = ({ id, title, img, visible, updateBoard }) => {
+const BoardTable = ({ id, title, img, visible,updateBoard}) => {
   const dispatch = useDispatch();
+  const [visibleError, setVisibleError] = useState(false);
+ 
+console.log(id,'vs')
+ 
 
   function deleteBoard(id) {
+   
     dispatch(boardActions.deleteBoard(id));
   }
 
@@ -24,7 +29,7 @@ const BoardTable = ({ id, title, img, visible, updateBoard }) => {
             onClick={() => updateBoard(id)}
             className="mr-1"
           >
-            {!visible ? "Visible" : "Invisible"}
+            {!visible? "Visible" : "Invisible"}
           </Button>
         </th>
         <th>
@@ -32,7 +37,7 @@ const BoardTable = ({ id, title, img, visible, updateBoard }) => {
             variant="dark"
             size="md"
             className="BoardDelete-btn"
-            onClick={deleteBoard}
+            onClick={()=>deleteBoard(id)}
           >
             삭제
           </Button>
@@ -43,3 +48,4 @@ const BoardTable = ({ id, title, img, visible, updateBoard }) => {
 };
 
 export default BoardTable;
+
