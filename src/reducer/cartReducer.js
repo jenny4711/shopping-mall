@@ -34,10 +34,15 @@ const cartSlice=createSlice({
     getCartQtyRequest(state,action){
       state.loading=true;
     },
-    addToCartSuccess(state,action){
-      state.loading=false;
-      state.cartItemQty=action.payload
-     
+    addToCartSuccess(state, action) {
+      state.loading = false;
+      state.cartItemQty = action.payload;
+    
+      // totalPrice를 업데이트
+      state.totalPrice = state.cartList.reduce(
+        (total, item) => (total += item.productId.price * item.qty),
+        0
+      ).toFixed(2);
     },
     deleteCartItemSuccess(state,action){
       state.loading=false;
@@ -47,7 +52,7 @@ const cartSlice=createSlice({
     updateCartItemSuccess(state,action){
       state.loading=false;
       state.cartList=action.payload;
-      state.totalPrice=action.payload.reduce((total,item)=>(total+=item.productId.price *item.qty),0).toFixed(2)
+      // state.totalPrice=action.payload.reduce((total,item)=>(total+=item.productId.price *item.qty),0).toFixed(2)
     },
     getCartListSuccess(state,action){
       state.loading=false;
