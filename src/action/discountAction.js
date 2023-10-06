@@ -16,6 +16,7 @@ const createCode =
       });
       if (res.status !== 200) throw new Error(res.error);
       dispatch(discountCodeActionss.createCodeSuccess(res.data.data));
+      dispatch(getAllCodes())
       dispatch(commonUiActions.showToastMessage("코드생성 완료", "success"));
     } catch (error) {
       dispatch(discountCodeActionss.allFail(error.error));

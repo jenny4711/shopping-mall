@@ -37,6 +37,7 @@ const makeInvisible=(id,isVisible)=>async(dispatch)=>{
     const res = await api.put(`/board/${id}`,update)
     if(res.status !==200)throw new Error(res.error);
  
+ 
     dispatch(boardActionss.makeInvisibleSuccess())
     dispatch(getAllBoard())
     dispatch(commonUiActions.showToastMessage("보드수정 완료","success"))
@@ -45,8 +46,9 @@ const makeInvisible=(id,isVisible)=>async(dispatch)=>{
     
 
   }catch(error){
+    console.log(error,'invisible?')
     dispatch(boardActionss.allFail(error.error))
-    dispatch(commonUiActions.showToastMessage("Error", "error"));
+    dispatch(commonUiActions.showToastMessage("Error!!", "error"));
   }
 }
 
@@ -61,8 +63,9 @@ const deleteBoard=(id)=>async(dispatch)=>{
 
 
   }catch(error){
-    dispatch(boardActionss.allFail(error.error))
-    dispatch(commonUiActions.showToastMessage("Error", "error"));
+    dispatch(boardActionss.allFail(error))
+    console.log(error,'errorAction!!')
+    dispatch(commonUiActions.showToastMessage('Error', "error"));
   }
 }
 

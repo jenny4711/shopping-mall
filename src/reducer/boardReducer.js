@@ -28,7 +28,7 @@ const boardSlice=createSlice({
     },
     makeInvisibleSuccess(state,action){
       state.loading=false;
-      state.error=action.payload.error
+      state.error=action.payload
     },
     deleteBoard(state,action){
       state.loading=false;
