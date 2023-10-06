@@ -39,6 +39,7 @@ const logout = () => async (dispatch) => {
   dispatch(userActionss.logout());
   dispatch(cartActionss.getCartListSuccess([]));
   dispatch(cartActionss.getCartQtySuccess(0));
+  dispatch(cartActionss.getDiscountPriceSuccess(0))
 };
 
 const loginWithGoogle = (token) => async (dispatch) => {
