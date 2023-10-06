@@ -9,7 +9,7 @@ const loginWithToken = () => async (dispatch) => {
     const response = await api.get("/user/me");
 
     if (response.status !== 200) throw new Error(response.error);
-    dispatch(userActionss.loginTokenSuccess(response.data.user));
+    dispatch(userActionss.loginTokenSuccess(response.data));
   } catch (error) {
     dispatch(userActionss.loginWithTokenFail(error));
 
