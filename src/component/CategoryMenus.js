@@ -10,16 +10,16 @@ const CategoryMenus = ({ menu , productList }) => {
       <Popover.Body >
         {menu === "Accessories"? (<ul className='popver-links'>
           <li>
-            <Link to={`/?name=woman-${menu.toLowerCase()}`}>{menu}-Woman</Link>
+            <Link to={`/?items=woman-${menu.toLowerCase()}`}>{menu}-Woman</Link>
           </li>
           <li>
-            <Link to={`/?name=men-${menu.toLowerCase()}`}>{menu}-Men</Link>
+            <Link to={`/?items=men-${menu.toLowerCase()}`}>{menu}-Men</Link>
           </li>
           <li>
-            <Link to={`/?name=kids-${menu.toLowerCase()}`}>{menu}-Kids</Link>
+            <Link to={`/?items=kids-${menu.toLowerCase()}`}>{menu}-Kids</Link>
           </li>
           <li>
-            <Link to={`/?name=baby-${menu.toLowerCase()}`}>{menu}-Baby</Link>
+            <Link to={`/?items=baby-${menu.toLowerCase()}`}>{menu}-Baby</Link>
           </li>
 
 
@@ -32,42 +32,42 @@ const CategoryMenus = ({ menu , productList }) => {
           ):(
           <ul className='popver-links'>
         <li>
-            <Link to={`/?name=${menu.toLowerCase()}-top`}>{menu}-top</Link>
+            <Link to={`/?items=${menu.toLowerCase()}-top`}>{menu}-top</Link>
           </li>
           
             <li>
-            <Link to={`/?name=${menu.toLowerCase()}-jacket`}>{menu}-jacket</Link>
+            <Link to={`/?items=${menu.toLowerCase()}-jacket`}>{menu}-jacket</Link>
           </li>
           <li>
-            <Link to={`/?name=${menu.toLowerCase()}-pants`}>{menu}-pants</Link>
+            <Link to={`/?items=${menu.toLowerCase()}-pants`}>{menu}-pants</Link>
           </li>
           <li>
-            <Link to={`/?name=${menu.toLowerCase()}-sale`}>{menu}-sale</Link>
+            <Link to={`/?items=${menu.toLowerCase()}-sale`}>{menu}-sale</Link>
           </li>
 
           {menu ==="Woman" || menu === "Kids" ?
             (<li>
-            <Link to={`/?name=${menu.toLowerCase()}-dress`}>{menu}-dress</Link>
+            <Link to={`/?items=${menu.toLowerCase()}-dress`}>{menu}-dress</Link>
           </li>):("")
           }
           {menu ==="Baby" || menu === "Kids"?
         (
         <li>
-          <Link to={`/?name=${menu.toLowerCase()}-bodysuit`}>{menu}-BodySuit</Link>
+          <Link to={`/?items=${menu.toLowerCase()}-bodysuit`}>{menu}-BodySuit</Link>
         </li>
         ):""  
         }
         {menu ==="Baby" || menu === "Kids"?
         (
         <li>
-          <Link to={`/?name=${menu.toLowerCase()}-overalls`}>{menu}-Overalls</Link>
+          <Link to={`/?items=${menu.toLowerCase()}-overalls`}>{menu}-Overalls</Link>
         </li>
         ):""  
         }
         {menu ==="Baby"?
         (
         <li>
-          <Link to={`/?name=${menu.toLowerCase()}-jumpsuit`}>{menu}-Jump Suit</Link>
+          <Link to={`/?items=${menu.toLowerCase()}-jumpsuit`}>{menu}-Jump Suit</Link>
         </li>
         ):""  
         }
@@ -75,7 +75,7 @@ const CategoryMenus = ({ menu , productList }) => {
       {menu ==="Baby"?
         (
         <li>
-          <Link to={`/?name=${menu.toLowerCase()}-CottonSet`}>{menu}-CottonSet</Link>
+          <Link to={`/?items=${menu.toLowerCase()}-CottonSet`}>{menu}-CottonSet</Link>
         </li>
         ):""  
         }
