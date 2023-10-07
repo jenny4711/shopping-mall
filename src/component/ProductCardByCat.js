@@ -27,7 +27,7 @@ const ProductCardByCat = ({ showList, showPrice }) => {
   });
 
   const goToAll = (cate) => {
-    return navigate(`/?name=${cate}-all`);
+    return navigate(`/?items=${cate}-all`);
   };
 
   let settings;
