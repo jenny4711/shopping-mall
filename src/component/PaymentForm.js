@@ -51,7 +51,7 @@ const PaymentForm = ({
                 onChange={handlePaymentInfoChange}
                 onFocus={handleInputFocus}
                 required
-                value={cardValue.expiry}
+                value={cc_expires_format(cardValue.expiry)}
                 maxLength={7}
               />
             </Col>
