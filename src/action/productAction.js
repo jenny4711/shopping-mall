@@ -43,8 +43,9 @@ const getProductDetail = (id) => async (dispatch) => {
 
     dispatch(productActionss.productDetail(response.data.data));
   } catch (error) {
+
     dispatch(productActionss.productGetFail(error.error));
-    dispatch(commonUiActions.showToastMessage(error.error, "error"));
+    dispatch(commonUiActions.showToastMessage(error, "error"));
   }
 };
 
@@ -59,8 +60,8 @@ const createProduct = (formData) => async (dispatch) => {
     dispatch(commonUiActions.showToastMessage("상품생성 완료", "success"));
     dispatch(getProductList({ page: 1 }));
   } catch (error) {
-    dispatch(productActionss.productCreateFail(error.error));
-    dispatch(commonUiActions.showToastMessage(error.error, "error"));
+    dispatch(productActionss.productCreateFail(error));
+    dispatch(commonUiActions.showToastMessage("상품생성 정보를 확인후 다시 시도해주세요!", "error"));
   }
 };
 
@@ -77,21 +78,22 @@ const editProduct = (formData, id) => async (dispatch) => {
     dispatch(getProductList({ page: 1, name: "" }));
   } catch (error) {
     dispatch(productActionss.productGetFail(error.error));
-    dispatch(commonUiActions.showToastMessage(error.error, "error"));
+    dispatch(commonUiActions.showToastMessage("상품수정 다시 시도해주시기 바랍니다. ", "error"));
   }
 };
 
 const updateIsDeleted = (updated, id) => async (dispatch) => {
   try {
     dispatch(productActionss.productEditRequest());
-    const res = await api.put(`/product/isDeleted/${id}`, updated);
+    const update={visible:updated}
+    const res = await api.put(`/product/isDeleted/${id}`, update);
     if (res.status !== 200) throw new Error(res.error);
     dispatch(productActionss.productEditSuccess(res.data.data));
     dispatch(commonUiActions.showToastMessage("상품 삭제 완료", "success"));
     dispatch(getProductList({ page: 1, name: "" }));
   } catch (error) {
     dispatch(productActionss.productGetFail(error.error));
-    dispatch(commonUiActions.showToastMessage(error.error, "error"));
+    dispatch(commonUiActions.showToastMessage("업데이트를 다시 시도해주세요.", "error"));
   }
 };
 
