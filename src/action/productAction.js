@@ -65,7 +65,7 @@ const createProduct = (formData,searchQuery) => async (dispatch) => {
   }
 };
 
-const editProduct = (formData, id) => async (dispatch) => {
+const editProduct = (formData, id,searchQuery) => async (dispatch) => {
   try {
     dispatch(productActionss.productEditRequest());
 
