@@ -152,26 +152,33 @@ const PaymentPage = () => {
                 id="status-address"
               />
             </Form>
-            <div className={!addUserInfo ? "none" : ""}>
-              <ul>
-                <li>firstName:{initialFirstName}</li>
-                <li>lastName:{initialLastName}</li>
-                <li>contact:{initialEmail}</li>
-                <li>address:{initialAddress}</li>
-                <li>city:{initialCity}</li>
-              </ul>
-            </div>
+            
             <div>
               <Form onSubmit={handleSubmit}>
                 <Row className="mb-3">
                   <Form.Group as={Col} controlId="lastName">
                     <Form.Label>성</Form.Label>
-                    <Form.Control
+                   <Form.Control
                       type="text"
                       onChange={handleFormChange}
                       required={!addUserInfo}
+                      className={addUserInfo?"none":""}
                       name="lastName"
                     />
+                    <Form.Control
+                      type="text"
+                      onChange={handleFormChange}
+                      className={!addUserInfo?"none":""}
+                      value={initialLastName}
+                      required={!addUserInfo}
+                      name="lastName"
+                    />
+                    
+                    
+                    
+                    
+                    
+                    
                   </Form.Group>
 
                   <Form.Group as={Col} controlId="firstName">
@@ -179,9 +186,21 @@ const PaymentPage = () => {
                     <Form.Control
                       type="text"
                       onChange={handleFormChange}
+                      className={addUserInfo?"none":""}
                       required={!addUserInfo}
                       name="firstName"
                     />
+                    <Form.Control
+                      type="text"
+                      onChange={handleFormChange}
+                      className={!addUserInfo?"none":""}
+                      value={initialFirstName}
+                      required={!addUserInfo}
+                      name="firstName"
+                    />
+
+
+
                   </Form.Group>
                 </Row>
 
@@ -190,9 +209,20 @@ const PaymentPage = () => {
                   <Form.Control
                     placeholder="010-xxx-xxxxx"
                     onChange={handleFormChange}
+                    className={addUserInfo?"none":""}
                     required={!addUserInfo}
                     name="contact"
                   />
+                   <Form.Control
+                    placeholder="010-xxx-xxxxx"
+                    onChange={handleFormChange}
+                    className={!addUserInfo?"none":""}
+                    value={initialEmail}
+                    required={!addUserInfo}
+                    name="contact"
+                  />
+
+
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formGridAddress2">
@@ -200,6 +230,15 @@ const PaymentPage = () => {
                   <Form.Control
                     placeholder="Apartment, studio, or floor"
                     onChange={handleFormChange}
+                    className={addUserInfo?"none":""}
+                    required={!addUserInfo}
+                    name="address"
+                  />
+                   <Form.Control
+                    placeholder="Apartment, studio, or floor"
+                    onChange={handleFormChange}
+                    className={!addUserInfo?"none":""}
+                    value={initialAddress}
                     required={!addUserInfo}
                     name="address"
                   />
@@ -209,6 +248,14 @@ const PaymentPage = () => {
                   <Form.Group as={Col} controlId="formGridCity">
                     <Form.Label>City</Form.Label>
                     <Form.Control
+                     className={addUserInfo?"none":""}
+                      onChange={handleFormChange}
+                      required={!addUserInfo}
+                      name="city"
+                    />
+                     <Form.Control
+                     className={!addUserInfo?"none":""}
+                     value={initialCity}
                       onChange={handleFormChange}
                       required={!addUserInfo}
                       name="city"
@@ -218,6 +265,14 @@ const PaymentPage = () => {
                   <Form.Group as={Col} controlId="formGridZip">
                     <Form.Label>Zip</Form.Label>
                     <Form.Control
+                     className={addUserInfo?"none":""}
+                      onChange={handleFormChange}
+                      required={!addUserInfo}
+                      name="zip"
+                    />
+                    <Form.Control
+                     className={!addUserInfo?"none":""}
+                     value={initialZip}
                       onChange={handleFormChange}
                       required={!addUserInfo}
                       name="zip"
