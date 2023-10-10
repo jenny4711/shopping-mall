@@ -27,8 +27,8 @@ const Navbar = ({ user }) => {
 
   useEffect(() => {
     dispatch(cartActions.getCartQty());
-  }, []);
-
+  }, [cartItemQty]);
+console.log(cartItemQty,'qty')
   const onCheckEnter = (event) => {
    
     if (event.key === "Enter") {
