@@ -74,7 +74,7 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
   };
 
   const deleteStock = (idx) => {
-    const newStock = stock.filter((item, index) => index !== idx);
+    const newStock = stock.filter((item, index) =>index !== idx);
     
     setStock(newStock);
    
@@ -83,12 +83,14 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
   const handleSizeChange = (value, index) => {
     let newStock = [...stock];
     newStock[index][0] = value;
+    setStock(newStock)
    
   };
 
   const handleStockChange = (value, index) => {
     let newStock = [...stock];
     newStock[index][1] = value;
+    setStock(newStock)
    
   };
 
