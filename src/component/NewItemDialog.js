@@ -18,7 +18,7 @@ const InitialFormData = {
   status: "active",
   price: 0,
 };
-const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
+const NewItemDialog = ({ mode, showDialog, setShowDialog ,searchQuery}) => {
   const selectedProduct = useSelector((state) => state.product.selectedProduct);
   const { error } = useSelector((state) => state.product);
   const [formData, setFormData] = useState(
@@ -46,7 +46,7 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
    
     if (mode === "new") {
       dispatch(
-        productActions.createProduct({ ...formData, stock: totalStock })
+        productActions.createProduct({ ...formData, stock: totalStock },searchQuery)
       );
       setShowDialog(false);
       
@@ -54,7 +54,7 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
       dispatch(
         productActions.editProduct(
           { ...formData, stock: totalStock },
-          selectedProduct._id
+          selectedProduct._id,searchQuery
         )
       );
       setShowDialog(false);

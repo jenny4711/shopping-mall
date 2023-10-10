@@ -49,7 +49,7 @@ const getProductDetail = (id) => async (dispatch) => {
   }
 };
 
-const createProduct = (formData) => async (dispatch) => {
+const createProduct = (formData,searchQuery) => async (dispatch) => {
   try {
     dispatch(productActionss.productCreateRequest());
 
@@ -58,7 +58,7 @@ const createProduct = (formData) => async (dispatch) => {
 
     dispatch(productActionss.productCreateSuccess());
     dispatch(commonUiActions.showToastMessage("상품생성 완료", "success"));
-    dispatch(getProductList({ page: 1 }));
+    dispatch(getProductList({ page: searchQuery.page }));
   } catch (error) {
     dispatch(productActionss.productCreateFail(error));
     dispatch(commonUiActions.showToastMessage("상품생성 정보를 확인후 다시 시도해주세요!", "error"));
@@ -75,7 +75,7 @@ const editProduct = (formData, id) => async (dispatch) => {
     dispatch(productActionss.productEditSuccess(response.data.data));
     dispatch(commonUiActions.showToastMessage("상품 수정 완료", "success"));
 
-    dispatch(getProductList({ page: 1, name: "" }));
+    dispatch(getProductList({ page: searchQuery.page, name: "" }));
   } catch (error) {
     dispatch(productActionss.productGetFail(error.error));
     dispatch(commonUiActions.showToastMessage("상품수정 다시 시도해주시기 바랍니다. ", "error"));

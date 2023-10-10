@@ -122,6 +122,7 @@ const AdminProduct = () => {
         mode={mode}
         showDialog={showDialog}
         setShowDialog={setShowDialog}
+        searchQuery={searchQuery}
       />
     </div>
   );
