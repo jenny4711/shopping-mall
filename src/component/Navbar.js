@@ -41,6 +41,7 @@ console.log(cartItemQty,'qty')
   };
   const logout = () => {
     dispatch(userActions.logout());
+    navigate('/')
   };
 
   return (

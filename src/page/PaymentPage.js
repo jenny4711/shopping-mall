@@ -39,7 +39,7 @@ const PaymentPage = () => {
     cartUserInfo && cartUserInfo.email ? cartUserInfo.email : "";
 
   const totalAmount = totalDisPrice !==0 ?totalDisPrice:"";  
-  
+  const hasAddress= address&& address !==""
   const [shipInfo, setShipInfo] = useState({
     firstName: "",
     lastName: "",
@@ -149,7 +149,7 @@ const PaymentPage = () => {
               <Form.Check
                 type="checkbox"
                 onChange={() => setAddUserInfo(addUserInfo ? false : true)}
-                className={address ===""?'none':""}
+                className={!hasAddress?'none':""}
                 label="Same address as account"
                 id="status-address"
               />
