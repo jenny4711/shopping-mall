@@ -50,6 +50,7 @@ const loginWithGoogle = (token) => async (dispatch) => {
     if (res.status !== 200) throw new Error(res.error);
     sessionStorage.setItem("token", res.data.token);
     dispatch(userActionss.googleLoginSuccess(res.data));
+    dispatch(cartActions.getCartQty());
   } catch (error) {
     dispatch(userActionss.googleLoginFail(error));
     dispatch(commonUiActions.showToastMessage(error, "error"));

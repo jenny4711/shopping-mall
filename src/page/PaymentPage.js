@@ -14,6 +14,7 @@ const PaymentPage = () => {
     (state) => state.cart
   );
   const { orderNum, error } = useSelector((state) => state.order);
+  const {address}=useSelector((state)=>state.user.user.address)
   const [addUserInfo, setAddUserInfo] = useState(false);
   const [cardValue, setCardValue] = useState({
     cvc: "",
@@ -148,6 +149,7 @@ const PaymentPage = () => {
               <Form.Check
                 type="checkbox"
                 onChange={() => setAddUserInfo(addUserInfo ? false : true)}
+                className={address ===""?'none':""}
                 label="Same address as account"
                 id="status-address"
               />
