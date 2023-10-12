@@ -14,7 +14,7 @@ const PaymentPage = () => {
     (state) => state.cart
   );
   const { orderNum, error } = useSelector((state) => state.order);
-  const {address}=useSelector((state)=>state.user.user.address)
+  const {address}=useSelector((state)=>state.user.user)
   const [addUserInfo, setAddUserInfo] = useState(false);
   const [cardValue, setCardValue] = useState({
     cvc: "",
@@ -39,7 +39,8 @@ const PaymentPage = () => {
     cartUserInfo && cartUserInfo.email ? cartUserInfo.email : "";
 
   const totalAmount = totalDisPrice !==0 ?totalDisPrice:"";  
-  const hasAddress= address&& address !==""
+  const hasAddress= address&& address !==undefined
+  console.log(hasAddress,'address')
   const [shipInfo, setShipInfo] = useState({
     firstName: "",
     lastName: "",
